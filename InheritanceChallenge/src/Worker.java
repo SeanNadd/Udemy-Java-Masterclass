@@ -49,4 +49,13 @@ public class Worker {
             return null;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                '}';
+    }
 }

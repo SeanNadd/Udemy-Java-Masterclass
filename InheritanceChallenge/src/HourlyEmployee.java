@@ -1,8 +1,8 @@
 public class HourlyEmployee extends Employee{
     private double hourlyPayRate;
 
-    public HourlyEmployee(long employeeId, String hireDate, String name, String birthDate, String endDate, double hourlyPayRate) {
-        super(employeeId, hireDate, name, birthDate, endDate);
+    public HourlyEmployee(String hireDate, String name, String birthDate, String endDate, double hourlyPayRate) {
+        super(hireDate, name, birthDate, endDate);
         this.hourlyPayRate = hourlyPayRate;
     }
 
@@ -13,5 +13,12 @@ public class HourlyEmployee extends Employee{
     @Override
     public double collectPay(){
         return hourlyPayRate * 8;
+    }
+
+    @Override
+    public String toString() {
+        return "HourlyEmployee{" +
+                "hourlyPayRate=" + hourlyPayRate +
+                "} " + super.toString();
     }
 }
