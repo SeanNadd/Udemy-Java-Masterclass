@@ -5,24 +5,26 @@ public class SalariedEmployee extends Employee{
     private double annualSalary;
     private boolean isRetired;
 
-    public SalariedEmployee(String hireDate, String name, String birthDate, String endDate, double annualSalary, boolean isRetired) {
+    public SalariedEmployee(String hireDate, String name, String birthDate, String endDate, double annualSalary) {
         super(hireDate, name, birthDate, endDate);
         this.annualSalary = annualSalary;
-        this.isRetired = isRetired;
+        this.isRetired = false;
     }
 
     public void retire(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        setEndDate(LocalDate.now().minusDays(1).format(formatter));
+        terminate(LocalDate.now().minusDays(1).format(formatter));
+        isRetired = true;
     }
 
     public boolean isRetired() {
-        return LocalDate.now().isAfter(stringToLocalDate(endDate));
+        isRetired = LocalDate.now().isAfter(stringToLocalDate(endDate));
+        return isRetired;
     }
 
     @Override
     public double collectPay(){
-        return annualSalary / 12;
+        return (isRetired()) ? (annualSalary * 0.9) / 12 : annualSalary / 12;
     }
 
     @Override
